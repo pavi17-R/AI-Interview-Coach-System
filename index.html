@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Interview Coach</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🧠</span>
+        <span class="logo-text">InterviewCoach<span class="logo-ai">.AI</span></span>
+      </div>
+      <div class="header-badge">Powered by GPT-4o-mini</div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-tag">Your personal AI interviewer</div>
+    <h1 class="hero-title">Ace Your Next <span class="highlight">Tech Interview</span></h1>
+    <p class="hero-sub">Answer real interview questions. Get instant AI-powered scoring, feedback, and the ideal answer.</p>
+  </section>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <main class="container">
+
+    <!-- Topic Selector -->
+    <div class="card topic-card">
+      <label class="card-label">📂 Choose Interview Topic</label>
+      <div class="topic-grid">
+        <button class="topic-btn active" data-topic="ml">🤖 Machine Learning</button>
+        <button class="topic-btn" data-topic="python">🐍 Python</button>
+        <button class="topic-btn" data-topic="java">☕ Java</button>
+        <button class="topic-btn" data-topic="hr">🤝 HR / Behavioral</button>
+        <button class="topic-btn" data-topic="dsa">🔗 Data Structures</button>
+        <button class="topic-btn" data-topic="system_design">🏗️ System Design</button>
+      </div>
+    </div>
+
+    <!-- Question Card -->
+    <div class="card question-card">
+      <div class="question-header">
+        <span class="q-label">Interview Question</span>
+        <span class="q-badge" id="topicBadge">ML</span>
+      </div>
+      <p class="question-text" id="questionText">
+        Explain Machine Learning in simple terms.
+      </p>
+    </div>
+
+    <!-- Answer Card -->
+    <div class="card answer-card">
+      <label class="card-label" for="answerBox">✍️ Your Answer</label>
+      <textarea
+        id="answerBox"
+        placeholder="Type your answer here... Be clear, use examples, and structure your thoughts."
+        rows="7"
+      ></textarea>
+      <div class="answer-footer">
+        <span class="char-count" id="charCount">0 characters</span>
+        <button class="submit-btn" id="submitBtn" onclick="submitAnswer()">
+          <span id="btnText">Evaluate My Answer →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-card" id="loadingCard" style="display:none;">
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <p>AI is evaluating your answer...</p>
+    </div>
+
+    <!-- Results Card -->
+    <div class="card result-card" id="resultCard" style="display:none;">
+
+      <!-- Score Banner -->
+      <div class="score-banner" id="scoreBanner">
+        <div class="score-circle" id="scoreCircle">
+          <span class="score-num" id="scoreNum">0</span>
+          <span class="score-denom">/10</span>
+        </div>
+        <div class="score-info">
+          <div class="score-grade" id="scoreGrade">—</div>
+          <div class="score-label">Interview Score</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" id="scoreBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strengths -->
+      <div class="eval-section">
+        <h3 class="eval-title green">✅ Strengths</h3>
+        <ul class="eval-list" id="strengthsList"></ul>
+      </div>
+
+      <!-- Weaknesses -->
+      <div class="eval-section">
+        <h3 class="eval-title red">⚠️ Areas to Improve</h3>
+        <ul class="eval-list" id="weaknessesList"></ul>
+      </div>
+
+      <!-- Improvements -->
+      <div class="eval-section">
+        <h3 class="eval-title blue">💡 How to Improve</h3>
+        <p class="eval-text" id="improvementsText"></p>
+      </div>
+
+      <!-- Ideal Answer -->
+      <div class="eval-section ideal-section">
+        <h3 class="eval-title gold">🏆 Ideal Answer</h3>
+        <p class="eval-text ideal-text" id="idealAnswerText"></p>
+      </div>
+
+      <!-- Try Again -->
+      <button class="retry-btn" onclick="resetForm()">Try Another Answer ↩</button>
+
+    </div>
+
+    <!-- Error Card -->
+    <div class="card error-card" id="errorCard" style="display:none;">
+      <p>❌ <span id="errorText"></span></p>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>Built with Flask + GPT-4o-mini · Practice daily, land your dream job 🚀</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
